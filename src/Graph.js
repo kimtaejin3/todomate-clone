@@ -2,8 +2,8 @@ import styled from "styled-components";
 import EmptyGraph from "./EmptyGraph";
 import { useRecoilValue } from "recoil";
 import {
-  filteredCompletedTodoList,
-  filteredTodoListStateByDay,
+  filteredCompletedTodoListByDay,
+  filteredTodoListByDay,
   getGoalIdColorMap,
 } from "./recoil/selector";
 import { memo } from "react";
@@ -21,8 +21,8 @@ function adjustColors(arr) {
 }
 
 export default memo(function Graph({ day }) {
-  const todoList = useRecoilValue(filteredTodoListStateByDay(day));
-  const completedTodoList = useRecoilValue(filteredCompletedTodoList(day));
+  const todoList = useRecoilValue(filteredTodoListByDay(day));
+  const completedTodoList = useRecoilValue(filteredCompletedTodoListByDay(day));
   const goalIdColorMap = useRecoilValue(getGoalIdColorMap);
 
   const goalIds = completedTodoList.map((v) => v.goalId);

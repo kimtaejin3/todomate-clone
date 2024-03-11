@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import React from "react";
-import css from "styled-components";
 
 export default function EmptyGraph() {
   return (

@@ -1,7 +1,7 @@
 import { selector, selectorFamily } from "recoil";
 import { goalListState, todoListState } from "./atom";
 
-export const filteredTodoListStateByDay = selectorFamily({
+export const filteredTodoListByDay = selectorFamily({
   key: "FilteredTodoListByDay",
   get:
     (day) =>
@@ -17,12 +17,12 @@ export const filteredTodoListStateByDay = selectorFamily({
     },
 });
 
-export const filteredCompletedTodoList = selectorFamily({
+export const filteredCompletedTodoListByDay = selectorFamily({
   key: "FilteredCompletedTodoList",
   get:
     (day) =>
     ({ get }) => {
-      const todoList = get(filteredTodoListStateByDay(day));
+      const todoList = get(filteredTodoListByDay(day));
 
       return todoList.filter((data) => data.isCompleted);
     },
@@ -33,7 +33,7 @@ export const filteredTodoListByDayAndGoalId = selectorFamily({
   get:
     ({ day, id }) =>
     ({ get }) => {
-      const todoList = get(filteredTodoListStateByDay(day));
+      const todoList = get(filteredTodoListByDay(day));
       return todoList.filter((data) => data.goalId === id);
     },
 });
