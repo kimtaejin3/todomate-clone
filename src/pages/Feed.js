@@ -21,12 +21,12 @@ const Feed = () => {
   return (
     <>
       <Header>
-        <Popover
-          show={isPopoverOpened}
-          onClose={() => setIsPopoverOpend(false)}
-        />
         <LayoutWrapper>
           <Headings>
+            <Popover
+              show={isPopoverOpened}
+              onClose={() => setIsPopoverOpend(false)}
+            />
             <Logo>
               <TbCardsFilled />
             </Logo>
@@ -60,7 +60,6 @@ const Feed = () => {
               ))}
             </GoalsArea>
           </Container>
-          <Popover />
         </LayoutWrapper>
       </Main>
     </>
@@ -75,12 +74,12 @@ const LayoutWrapper = styled.div`
 
 const Header = styled.header`
   padding: 20px 0;
-  position: relative;
 `;
 
 const Headings = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
 `;
 
 const Main = styled.main``;

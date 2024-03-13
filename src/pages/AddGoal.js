@@ -1,25 +1,58 @@
 import styled from "styled-components";
 import { GrFormPrevious } from "react-icons/gr";
+import { FaAngleDown } from "react-icons/fa";
+import BottomSheet from "../components/BottomSheet";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AddGoal = () => {
+  const [show, setShow] = useState(false);
+  const [color, setColor] = useState("#000");
+  const [goal, setGoal] = useState("");
+
+  const handleColorBtnClick = () => {
+    setShow(true);
+  };
+
+  const handleSubmit = () => {
+    console.log("goal created!!!", goal, color);
+  };
+
   return (
     <Container>
       <Header>
-        <GrFormPrevious fontSize={32} />
+        <Link to="/">
+          <GrFormPrevious fontSize={32} />
+        </Link>
         <HeaderTitle>목표</HeaderTitle>
-        <Btn>확인</Btn>
+        <Btn onClick={handleSubmit}>확인</Btn>
       </Header>
       <Contents>
         <div>
-          <Input type="text" placeholder="목표 입력" />
+          <Input
+            value={goal}
+            onChange={(e) => setGoal(e.target.value)}
+            $color={color}
+            type="text"
+            placeholder="목표 입력"
+          />
         </div>
 
         <SelectColor>
           <span>색상</span>
-          <ColorBtn>
-            <Preview />
+          <ColorBtn onClick={handleColorBtnClick}>
+            <Preview $color={color} />
+            <FaAngleDown />
           </ColorBtn>
         </SelectColor>
+
+        {show && (
+          <BottomSheet
+            selectedColor={color}
+            onSelectColor={setColor}
+            onClose={() => setShow(false)}
+          />
+        )}
       </Contents>
     </Container>
   );
@@ -55,9 +88,8 @@ const Contents = styled.div`
 const Input = styled.input`
   width: 100%;
   border: none;
-  border-bottom: 3px solid;
+  border-bottom: 3px solid ${({ $color }) => $color};
   padding-bottom: 5px;
-
   &:focus {
     outline: none;
   }
@@ -72,12 +104,16 @@ const SelectColor = styled.div`
 const ColorBtn = styled.button`
   background-color: #fff;
   border: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
 `;
 const Preview = styled.div`
   width: 20px;
   height: 20px;
-  background-color: #000;
   border-radius: 50%;
+  background-color: ${({ $color }) => $color};
 `;
 
 export default AddGoal;

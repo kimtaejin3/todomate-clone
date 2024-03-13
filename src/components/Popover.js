@@ -16,9 +16,9 @@ const Popover = ({ show, onClose }) => {
     <Container ref={ref}>
       <SelectList>
         <SelectListItem>
-          <GoalAddBtn>
-            <Link to="/goal">목표 등록하기</Link>
-          </GoalAddBtn>
+          <Link to="/goal">
+            <GoalAddBtn>목표 등록하기</GoalAddBtn>
+          </Link>
         </SelectListItem>
       </SelectList>
     </Container>
@@ -30,8 +30,8 @@ const Container = styled.div`
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   position: absolute;
-  right: 20px;
-  top: 60px;
+  right: 0px;
+  top: 40px;
 `;
 
 const SelectList = styled.ul`
@@ -48,6 +48,7 @@ const GoalAddBtn = styled.button`
   border: none;
   cursor: pointer;
   width: 100%;
+  text-align: left;
 
   padding: 10px;
   &:hover {
