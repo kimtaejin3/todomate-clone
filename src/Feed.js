@@ -2,10 +2,10 @@ import Calendar from "./components/Calendar";
 import { GoPersonFill } from "react-icons/go";
 import { CiCircleMore } from "react-icons/ci";
 import { TbCardsFilled } from "react-icons/tb";
-import Goal from "./components/Goal";
-import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { goalListState } from "./recoil/atom";
+import Goal from "./components/Goal";
+import styled from "styled-components";
 
 const Feed = () => {
   const myGoals = useRecoilValue(goalListState);
@@ -18,7 +18,7 @@ const Feed = () => {
             <Logo>
               <TbCardsFilled />
             </Logo>
-            <CiCircleMore style={{ fontSize: "25px" }} />
+            <CiCircleMore style={{ fontSize: "25px", cursor: "pointer" }} />
           </Headings>
         </LayoutWrapper>
       </Header>

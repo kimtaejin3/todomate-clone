@@ -11,7 +11,12 @@ const TodoInput = ({ goalId, show, color, onClose }) => {
 
   useEffect(() => {
     function handleOutsideClick(e) {
-      if (ref.current && !ref.current.contains(e.target)) {
+      console.log(e.target);
+      if (
+        ref.current &&
+        !ref.current.contains(e.target) &&
+        e.target.id !== "addBtn"
+      ) {
         onClose();
       }
     }

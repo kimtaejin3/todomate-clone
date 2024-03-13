@@ -5,6 +5,7 @@ import { useState } from "react";
 import TodoInput from "./TodoInput";
 import { useRecoilValue } from "recoil";
 import { filteredTodoListByDayAndGoalId } from "../recoil/selector";
+import { FaCheck } from "react-icons/fa";
 import { dateState } from "../recoil/atom";
 
 const Goal = ({ id, color, name }) => {
@@ -26,14 +27,19 @@ const Goal = ({ id, color, name }) => {
         <TbCards style={{ fontSize: "18px" }} />
         <GoalName $color={color}>{name}</GoalName>
         <AddBtn onClick={handleShow}>
-          <MdAdd />
+          <MdAdd id="addBtn" />
         </AddBtn>
       </GoalArea>
-      <ul>
+      <TodoList>
         {todoList.map((todo) => (
-          <li>{todo.content}</li>
+          <TodoListItem>
+            <CheckToggle $isCompleted={todo.isCompleted} $color={color}>
+              {todo.isCompleted && <FaCheck color="#fff" />}
+            </CheckToggle>
+            <div>{todo.content}</div>
+          </TodoListItem>
         ))}
-      </ul>
+      </TodoList>
       <TodoInput
         goalId={id}
         show={show}
@@ -73,6 +79,32 @@ const AddBtn = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+`;
+
+const CheckToggle = styled.button`
+  border: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background-color: #d3d8db;
+  border-radius: 5px;
+  margin-left: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: ${({ $isCompleted, $color }) =>
+    $isCompleted ? $color : "#d3d8db"};
+`;
+
+const TodoList = styled.ul``;
+const TodoListItem = styled.li`
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 export default Goal;

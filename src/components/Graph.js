@@ -7,6 +7,7 @@ import {
   getGoalIdColorMap,
 } from "../recoil/selector";
 import { memo } from "react";
+import { FaCheck } from "react-icons/fa";
 
 function adjustColors(arr) {
   if (arr.length === 1) {
@@ -37,7 +38,7 @@ export default memo(function Graph({ day }) {
 
   return (
     <div style={{ position: "relative" }}>
-      <Count>{remainingTodos === 0 ? "V" : remainingTodos}</Count>
+      <Count>{remainingTodos === 0 ? <FaCheck /> : remainingTodos}</Count>
       <Row style={{ marginBottom: "-5px" }}>
         <CircleOne color={colorOne} />
         <CircleTwo color={colorTwo} />
@@ -55,7 +56,9 @@ const Circle = styled.div`
   height: 15px;
   border-radius: 50%;
   background-color: #d3d8db;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CircleOne = styled(Circle)`
@@ -94,6 +97,10 @@ const Count = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 10px;
-  padding: 0 4px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

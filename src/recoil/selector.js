@@ -29,7 +29,7 @@ export const filteredCompletedTodoListByDay = selectorFamily({
 });
 
 export const filteredTodoListByDayAndGoalId = selectorFamily({
-  key: "filteredTodoListByDayAndGoalId",
+  key: "FilteredTodoListByDayAndGoalId",
   get:
     ({ day, id }) =>
     ({ get }) => {
@@ -39,14 +39,14 @@ export const filteredTodoListByDayAndGoalId = selectorFamily({
 });
 
 export const getGoalIdColorMap = selector({
-  key: "GetGoalIdMappedColor",
+  key: "GetGoalIdColorMap",
   get: ({ get }) => {
     const goalList = get(goalListState);
-    const idMappedColor = {};
+    const idColorMap = {};
     goalList.forEach((goal) => {
-      idMappedColor[goal.id] = goal.color;
+      idColorMap[goal.id] = goal.color;
     });
 
-    return idMappedColor;
+    return idColorMap;
   },
 });
