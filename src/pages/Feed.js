@@ -1,12 +1,12 @@
-import Calendar from "./components/Calendar";
+import Calendar from "../components/Calendar";
 import { GoPersonFill } from "react-icons/go";
 import { CiCircleMore } from "react-icons/ci";
 import { TbCardsFilled } from "react-icons/tb";
 import { useRecoilValue } from "recoil";
-import { goalListState } from "./recoil/atom";
-import Goal from "./components/Goal";
+import { goalListState } from "../recoil/atom";
+import Goal from "../components/Goal";
 import styled from "styled-components";
-import Popover from "./components/Popover";
+import Popover from "../components/Popover";
 import { useState } from "react";
 
 const Feed = () => {

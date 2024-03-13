@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useHandleOutsideClick } from "../hooks/useHandleOutsideClick";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Popover = ({ show, onClose }) => {
   const ref = useRef(null);
@@ -15,7 +16,9 @@ const Popover = ({ show, onClose }) => {
     <Container ref={ref}>
       <SelectList>
         <SelectListItem>
-          <GoalAddBtn>목표 등록하기</GoalAddBtn>
+          <GoalAddBtn>
+            <Link to="/goal">목표 등록하기</Link>
+          </GoalAddBtn>
         </SelectListItem>
       </SelectList>
     </Container>
@@ -49,6 +52,11 @@ const GoalAddBtn = styled.button`
   padding: 10px;
   &:hover {
     background-color: #f2f2f2;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 `;
 
