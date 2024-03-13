@@ -3,10 +3,10 @@ import { MdArrowBackIos } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 import { useEffect, useState } from "react";
 import Graph from "./Graph";
-import { getDatesByMon } from "./util";
+import { getDatesByMon } from "../util";
 import dayjs from "dayjs";
 import { useRecoilState } from "recoil";
-import { dateState } from "./recoil/atom";
+import { dateState } from "../recoil/atom";
 
 const DAYS = ["월", "화", "수", "목", "금", "토", "일"];
 

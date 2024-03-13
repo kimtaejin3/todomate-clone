@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { dateState, todoListState } from "./recoil/atom";
+import { dateState, todoListState } from "../recoil/atom";
 
 const TodoInput = ({ goalId, show, color, onClose }) => {
   const ref = useRef();

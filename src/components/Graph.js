@@ -5,7 +5,7 @@ import {
   filteredCompletedTodoListByDay,
   filteredTodoListByDay,
   getGoalIdColorMap,
-} from "./recoil/selector";
+} from "../recoil/selector";
 import { memo } from "react";
 
 function adjustColors(arr) {

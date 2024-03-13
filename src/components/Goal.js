@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import TodoInput from "./TodoInput";
 import { useRecoilValue } from "recoil";
-import { filteredTodoListByDayAndGoalId } from "./recoil/selector";
-import { dateState } from "./recoil/atom";
+import { filteredTodoListByDayAndGoalId } from "../recoil/selector";
+import { dateState } from "../recoil/atom";
 
 const Goal = ({ id, color, name }) => {
   const [show, setShow] = useState(false);

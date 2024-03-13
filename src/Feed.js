@@ -1,8 +1,8 @@
-import Calendar from "./Calendar";
+import Calendar from "./components/Calendar";
 import { GoPersonFill } from "react-icons/go";
 import { CiCircleMore } from "react-icons/ci";
 import { TbCardsFilled } from "react-icons/tb";
-import Goal from "./Goal";
+import Goal from "./components/Goal";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { goalListState } from "./recoil/atom";
