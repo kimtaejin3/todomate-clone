@@ -6,19 +6,34 @@ import { useRecoilValue } from "recoil";
 import { goalListState } from "./recoil/atom";
 import Goal from "./components/Goal";
 import styled from "styled-components";
+import Popover from "./components/Popover";
+import { useState } from "react";
 
 const Feed = () => {
   const myGoals = useRecoilValue(goalListState);
 
+  const [isPopoverOpened, setIsPopoverOpend] = useState(false);
+
+  const handlePopoverOpen = () => {
+    setIsPopoverOpend(true);
+  };
+
   return (
     <>
       <Header>
+        <Popover
+          show={isPopoverOpened}
+          onClose={() => setIsPopoverOpend(false)}
+        />
         <LayoutWrapper>
           <Headings>
             <Logo>
               <TbCardsFilled />
             </Logo>
-            <CiCircleMore style={{ fontSize: "25px", cursor: "pointer" }} />
+            <CiCircleMore
+              onClick={handlePopoverOpen}
+              style={{ fontSize: "25px", cursor: "pointer" }}
+            />
           </Headings>
         </LayoutWrapper>
       </Header>
@@ -45,6 +60,7 @@ const Feed = () => {
               ))}
             </GoalsArea>
           </Container>
+          <Popover />
         </LayoutWrapper>
       </Main>
     </>
@@ -59,6 +75,7 @@ const LayoutWrapper = styled.div`
 
 const Header = styled.header`
   padding: 20px 0;
+  position: relative;
 `;
 
 const Headings = styled.div`
