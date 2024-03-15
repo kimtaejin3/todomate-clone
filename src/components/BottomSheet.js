@@ -63,6 +63,11 @@ const BottomSheet = ({ selectedColor, onSelectColor, onClose }) => {
     to: { height: terminate ? "0" : "50%", opacity: terminate ? "0" : "1" },
   });
 
+  const deemSprings = useSpring({
+    from: { opacity: terminate ? 0.2 : 0 },
+    to: { opacity: terminate ? 0 : 0.2 },
+  });
+
   const handleDeemClick = () => {
     setTerminate(true);
     setTimeout(() => {
@@ -84,7 +89,16 @@ const BottomSheet = ({ selectedColor, onSelectColor, onClose }) => {
 
   return (
     <div>
-      <Deem onClick={handleDeemClick} />
+      <animated.div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: "#000",
+          opacity: "0.2",
+          ...deemSprings,
+        }}
+        onClick={handleDeemClick}
+      />
       <animated.div
         style={{
           width: "470px",
@@ -116,7 +130,8 @@ const BottomSheet = ({ selectedColor, onSelectColor, onClose }) => {
 const Deem = styled.div`
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0);
+  opacity: 0.2;
 `;
 
 const ColorSelct = styled.div`

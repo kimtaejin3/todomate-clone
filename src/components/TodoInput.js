@@ -11,7 +11,6 @@ const TodoInput = ({ goalId, show, color, onClose }) => {
 
   useEffect(() => {
     function handleOutsideClick(e) {
-      console.log(e.target);
       if (
         ref.current &&
         !ref.current.contains(e.target) &&
@@ -30,6 +29,51 @@ const TodoInput = ({ goalId, show, color, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let flag = false;
+    todoList.forEach((todo) => {
+      if (todo.day === curDate) {
+        flag = true;
+      }
+    });
+    console.log("flag:", flag);
+    if (!flag) {
+      setTodoList([
+        ...todoList,
+        {
+          day: curDate,
+          todos: [
+            {
+              todoId: Math.floor(Math.random() * 100),
+              content: todo,
+              goalId: goalId,
+              isCompleted: false,
+            },
+          ],
+        },
+      ]);
+    } else {
+      setTodoList(
+        todoList.map((item) => {
+          if (item.day === curDate) {
+            return {
+              day: curDate,
+              todos: [
+                ...item.todos,
+                {
+                  todoId: Math.floor(Math.random() * 100),
+                  content: todo,
+                  goalId: goalId,
+                  isCompleted: false,
+                },
+              ],
+            };
+          }
+
+          return item;
+        })
+      );
+    }
 
     setTodo("");
   };

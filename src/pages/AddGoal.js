@@ -3,12 +3,18 @@ import { GrFormPrevious } from "react-icons/gr";
 import { FaAngleDown } from "react-icons/fa";
 import BottomSheet from "../components/BottomSheet";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { goalListState } from "../recoil/atom";
+import { useRecoilState } from "recoil";
 
 const AddGoal = () => {
   const [show, setShow] = useState(false);
   const [color, setColor] = useState("#000");
   const [goal, setGoal] = useState("");
+
+  const [goalList, setGoalList] = useRecoilState(goalListState);
+
+  const navigate = useNavigate();
 
   const handleColorBtnClick = () => {
     setShow(true);
@@ -16,12 +22,22 @@ const AddGoal = () => {
 
   const handleSubmit = () => {
     console.log("goal created!!!", goal, color);
+    setGoalList([
+      ...goalList,
+      {
+        id: `${Math.floor(Math.random() * 1000000 + 1)}L`,
+        name: goal,
+        color: color,
+      },
+    ]);
+
+    navigate("/feed");
   };
 
   return (
     <Container>
       <Header>
-        <Link to="/">
+        <Link to="/feed">
           <GrFormPrevious fontSize={32} />
         </Link>
         <HeaderTitle>목표</HeaderTitle>
@@ -67,6 +83,12 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  a {
+    &:active {
+      color: #000;
+    }
+  }
 `;
 
 const Btn = styled.button`

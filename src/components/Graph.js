@@ -26,7 +26,7 @@ export default memo(function Graph({ day }) {
   const completedTodoList = useRecoilValue(filteredCompletedTodoListByDay(day));
   const goalIdColorMap = useRecoilValue(getGoalIdColorMap);
 
-  const goalIds = completedTodoList.map((v) => v.goalId);
+  const goalIds = [...new Set(completedTodoList.map((v) => v.goalId))];
   const goalColors = goalIds.map((v) => goalIdColorMap[v]).slice(0, 4);
   const remainingTodos = todoList.length - completedTodoList.length;
 

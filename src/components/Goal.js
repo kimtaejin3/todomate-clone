@@ -3,19 +3,45 @@ import { MdAdd } from "react-icons/md";
 import styled from "styled-components";
 import { useState } from "react";
 import TodoInput from "./TodoInput";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { filteredTodoListByDayAndGoalId } from "../recoil/selector";
 import { FaCheck } from "react-icons/fa";
-import { dateState } from "../recoil/atom";
+import { dateState, todoListState } from "../recoil/atom";
 
 const Goal = ({ id, color, name }) => {
   const [show, setShow] = useState(false);
 
   const curDate = useRecoilValue(dateState);
 
-  const todoList = useRecoilValue(
+  const [todoList, setTodoList] = useRecoilState(
     filteredTodoListByDayAndGoalId({ day: curDate, id })
   );
+
+  const [entireTodoList, setEntireTodoList] = useRecoilState(todoListState);
+
+  const handleToggleTodo = (selectedTodo) => {
+    console.log(entireTodoList);
+    setEntireTodoList(
+      entireTodoList.map((item) => {
+        if (item.day === curDate) {
+          return {
+            day: curDate,
+            todos: item.todos.map((todo) => {
+              if (todo.todoId !== selectedTodo.todoId) {
+                return todo;
+              }
+
+              return {
+                ...todo,
+                isCompleted: !todo.isCompleted,
+              };
+            }),
+          };
+        }
+        return item;
+      })
+    );
+  };
 
   const handleShow = (e) => {
     setShow(true);
@@ -33,7 +59,11 @@ const Goal = ({ id, color, name }) => {
       <TodoList>
         {todoList.map((todo) => (
           <TodoListItem>
-            <CheckToggle $isCompleted={todo.isCompleted} $color={color}>
+            <CheckToggle
+              onClick={() => handleToggleTodo(todo)}
+              $isCompleted={todo.isCompleted}
+              $color={color}
+            >
               {todo.isCompleted && <FaCheck color="#fff" />}
             </CheckToggle>
             <div>{todo.content}</div>
@@ -99,7 +129,7 @@ const CheckToggle = styled.button`
 
 const TodoList = styled.ul``;
 const TodoListItem = styled.li`
-  margin: 0;
+  margin: 3px 0;
   padding: 0;
   list-style-type: none;
   display: flex;

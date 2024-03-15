@@ -14,7 +14,7 @@ export const todoListState = atom({
           isCompleted: true,
         },
         {
-          todoId: 1,
+          todoId: 2,
           content: "책 읽기",
           goalId: "2L",
           isCompleted: false,
