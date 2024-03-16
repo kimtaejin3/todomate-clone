@@ -43,10 +43,14 @@ const Feed = () => {
             <div>
               <Profile>
                 <ProfileIcon>
-                  <GoPersonFill />
+                  {/* <GoPersonFill /> */}
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/todomate-28330.appspot.com/o/files%2Fabout.png?alt=media&token=81635221-7b66-426b-9342-d20c2fc36790"
+                    alt="profileImg"
+                  />
                 </ProfileIcon>
                 <div>
-                  <Name>taejin</Name>
+                  <Name>CondingLove</Name>
                   <ProfileDescription>
                     프로필에 자기소개를 입력해보세요.
                   </ProfileDescription>
@@ -121,6 +125,13 @@ const ProfileIcon = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const GoalsArea = styled.div`
@@ -130,7 +141,7 @@ const GoalsArea = styled.div`
 const Name = styled.h2`
   font-weight: bold;
   font-size: 18px;
-  margin-
+  margin: 0 0 5px;
 `;
 
 export default Feed;

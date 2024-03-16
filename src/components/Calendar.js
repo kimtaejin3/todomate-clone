@@ -43,7 +43,7 @@ const Calendar = ({ style }) => {
     }
 
     setDates(getDatesByMon({ year, mon }));
-
+    console.log(dates);
     //todoListState 바꾸기
   }, [mon]);
 
@@ -66,7 +66,7 @@ const Calendar = ({ style }) => {
       <DateField>
         {dates?.map((i) => {
           if (i < 0) {
-            return <></>;
+            return <DateWrapper></DateWrapper>;
           }
 
           return (
