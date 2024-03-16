@@ -2,9 +2,9 @@ import { RecoilRoot } from "recoil";
 import Feed from "./pages/Feed";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddGoal from "./pages/AddGoal";
-import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Landing from "./pages/Landing";
+import Login from "./pages/Login";
 
 function App() {
   return (

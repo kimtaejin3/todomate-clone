@@ -21,7 +21,6 @@ const AddGoal = () => {
   };
 
   const handleSubmit = () => {
-    console.log("goal created!!!", goal, color);
     setGoalList([
       ...goalList,
       {

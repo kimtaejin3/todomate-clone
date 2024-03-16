@@ -59,6 +59,7 @@ const Circle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0.8;
 `;
 
 const CircleOne = styled(Circle)`
